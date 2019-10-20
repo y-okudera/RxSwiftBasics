@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Training1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CpH-Xv-exk">
+                                <rect key="frame" x="8" y="395.5" width="398" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-w2-VRo">
+                                <rect key="frame" x="8" y="437.5" width="398" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ib3-Er-lPA">
+                                <rect key="frame" x="8" y="758" width="398" height="44"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="V3T-j4-OOF"/>
+                                </constraints>
+                                <state key="normal" title="Reset count!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Cy-xv-Lf6">
+                                <rect key="frame" x="8" y="818" width="398" height="44"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5hc-M9-DMP"/>
+                                </constraints>
+                                <state key="normal" title="Count up!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hpc-w2-VRo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="3Ye-hz-agl"/>
+                            <constraint firstItem="8Cy-xv-Lf6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="5XC-Ue-3jI"/>
+                            <constraint firstItem="hpc-w2-VRo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6HB-1y-FN5"/>
+                            <constraint firstItem="8Cy-xv-Lf6" firstAttribute="top" secondItem="Ib3-Er-lPA" secondAttribute="bottom" constant="16" id="8wD-nc-6NC"/>
+                            <constraint firstItem="8Cy-xv-Lf6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Efa-nC-JfG"/>
+                            <constraint firstItem="Ib3-Er-lPA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Mqv-Xt-mdq"/>
+                            <constraint firstItem="CpH-Xv-exk" firstAttribute="width" secondItem="hpc-w2-VRo" secondAttribute="width" id="Vxn-q5-mQi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hpc-w2-VRo" secondAttribute="trailing" constant="8" id="XIe-xa-QDl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8Cy-xv-Lf6" secondAttribute="trailing" constant="8" id="fG5-0k-JDz"/>
+                            <constraint firstItem="CpH-Xv-exk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="meQ-YL-fUY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ib3-Er-lPA" secondAttribute="trailing" constant="8" id="tg8-wn-N01"/>
+                            <constraint firstItem="hpc-w2-VRo" firstAttribute="top" secondItem="CpH-Xv-exk" secondAttribute="bottom" constant="8" id="xd6-hg-saS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="countUpButton" destination="8Cy-xv-Lf6" id="aO4-BT-mT8"/>
+                        <outlet property="label" destination="hpc-w2-VRo" id="hUP-AX-fdC"/>
+                        <outlet property="resetCountButton" destination="Ib3-Er-lPA" id="9lT-FC-zlb"/>
+                        <outlet property="textField" destination="CpH-Xv-exk" id="TAd-4M-IWE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="133"/>
+        </scene>
+    </scenes>
+</document>
