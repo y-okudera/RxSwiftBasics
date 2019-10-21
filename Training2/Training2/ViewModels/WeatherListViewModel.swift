@@ -24,13 +24,11 @@ final class WeatherListViewModel: NSObject {
         APIClient
             .request(request: request)
             .subscribe(onSuccess: { response in
-                print(response)
                 guard let apiResponse = response as? WeatherForecastAPIResponse else {
                     return
                 }
                 self.items.accept(apiResponse.forecasts)
             }) { error in
-                print(error)
                 guard let apiError = error as? APIError else {
                     return
                 }

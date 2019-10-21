@@ -25,8 +25,9 @@ protocol APIRequest {
     var cachePolicy: URLRequest.CachePolicy { get }
     var allowsCellularAccess: Bool { get }
     
-    func decode(data: Data) -> Response?
-    func decode(errorResponseData: Data) -> ErrorResponse?
+    /// レスポンスデータをデコードする
+    /// - Parameter data: レスポンスデータ
+    func decode(data: Data) -> Result<Response>
     
     /// URLRequestを生成する
     func makeURLRequest() -> URLRequest?
@@ -74,30 +75,6 @@ extension APIRequest {
         return true
     }
     
-    func decode(data: Data) -> Response? {
-        
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            return try decoder.decode(Response.self, from: data)
-        } catch {
-            print("Response decode error:\(error)")
-            return nil
-        }
-    }
-    
-    func decode(errorResponseData: Data) -> ErrorResponse? {
-        
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            return try decoder.decode(ErrorResponse.self, from: errorResponseData)
-        } catch {
-            print("ErrorResponse decode error:\(error)")
-            return nil
-        }
-    }
-    
     func makeURLRequest() -> URLRequest? {
         
         let endPoint = baseURL.absoluteString + path
@@ -123,9 +100,52 @@ extension APIRequest {
             return urlRequest.urlEncoding(parameters: parameters)
         }
     }
+    
+    func decode(data: Data) -> Result<Response> {
+        
+        if let response = self.decode(responseData: data) {
+            print("response: \(response)")
+            return .success(response)
+        }
+        
+        if let apiErrorResponse = self.decode(errorResponseData: data) {
+            print("apiErrorResponse: \(apiErrorResponse)")
+            return .failure(APIError.errorResponse(errObject: apiErrorResponse))
+        }
+        
+        print("Decoding failure.")
+        return .failure(APIError.decodeError)
+    }
 }
 
 // MARK: - Private func
+extension APIRequest {
+    
+    private func decode(responseData: Data) -> Response? {
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+            return try decoder.decode(Response.self, from: responseData)
+        } catch {
+            print("Response decode error:\(error)")
+            return nil
+        }
+    }
+    
+    private func decode(errorResponseData: Data) -> ErrorResponse? {
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+            return try decoder.decode(ErrorResponse.self, from: errorResponseData)
+        } catch {
+            print("ErrorResponse decode error:\(error)")
+            return nil
+        }
+    }
+}
+
 private extension URLRequest {
     
     /// URLEncodingする
