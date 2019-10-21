@@ -29,37 +29,32 @@ struct APIClient {
             }
             
             print("urlRequest: \(urlRequest)")
-            let request = Alamofire.request(urlRequest).validate(statusCode: 200 ..< 300).responseData { dataResponse in
-                
-                // エラーチェック
-                if let error = dataResponse.result.error {
-                    let apiError = errorToAPIError(error: error, statusCode: dataResponse.response?.statusCode)
-                    singleEvent(.error(apiError))
-                    return
-                }
-                
-                // レスポンスデータのnilチェック
-                guard let responseData = dataResponse.result.value else {
-                    singleEvent(.error(APIError.invalidResponse))
-                    return
-                }
-                
-                // APIレスポンスをデコード
-                if let object = request.decode(data: responseData) {
-                    print("response:\(object)")
-                    singleEvent(.success(object))
-                    return
-                }
-                
-                // APIエラーレスポンスをデコード
-                if let apiErrorObject = request.decode(errorResponseData: responseData) {
-                    print("apiErrorObject:\(apiErrorObject)")
-                    singleEvent(.error(APIError.errorResponse(errObject: apiErrorObject)))
-                    return
-                }
-                
-                print("Decoding failure.")
-                singleEvent(.error(APIError.decodeError))
+            let request = Alamofire
+                .request(urlRequest)
+                .validate(statusCode: 200 ..< 300)
+                .responseData { dataResponse in
+                    
+                    // エラーチェック
+                    if let error = dataResponse.result.error {
+                        let apiError = errorToAPIError(error: error, statusCode: dataResponse.response?.statusCode)
+                        singleEvent(.error(apiError))
+                        return
+                    }
+                    
+                    // レスポンスデータのnilチェック
+                    guard let responseData = dataResponse.result.value else {
+                        singleEvent(.error(APIError.invalidResponse))
+                        return
+                    }
+                    
+                    // デコード処理
+                    let decodeResult = request.decode(data: responseData)
+                    switch decodeResult {
+                    case .success(let responseObject):
+                        singleEvent(.success(responseObject))
+                    case .failure(let decodeError):
+                        singleEvent(.error(decodeError))
+                    }
             }
             return Disposables.create { request.cancel() }
         }
