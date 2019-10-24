@@ -104,16 +104,19 @@ extension APIRequest {
     func decode(data: Data) -> Result<Response> {
         
         if let response = self.decode(responseData: data) {
-            print("response: \(response)")
+            Logger.info("Response: \(response)")
             return .success(response)
         }
         
         if let apiErrorResponse = self.decode(errorResponseData: data) {
             print("apiErrorResponse: \(apiErrorResponse)")
-            return .failure(APIError.errorResponse(errObject: apiErrorResponse))
+            let error = APIError.errorResponse(errObject: apiErrorResponse)
+            Logger.error(error.message)
+            return .failure(error)
         }
         
-        print("Decoding failure.")
+        let decodeError = APIError.decodeError
+        Logger.error(decodeError.message)
         return .failure(APIError.decodeError)
     }
 }

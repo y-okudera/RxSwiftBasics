@@ -23,16 +23,20 @@ final class WeatherListViewModel: NSObject {
         
         APIClient
             .request(request: request)
-            .subscribe(onSuccess: { response in
-                guard let apiResponse = response as? WeatherForecastAPIResponse else {
+            .subscribe(onSuccess: { [weak self] apiResponse in
+                guard let weakSelf = self else {
                     return
                 }
-                self.items.accept(apiResponse.forecasts)
-            }) { error in
+                weakSelf.items.accept(apiResponse.forecasts)
+                
+            }) { [weak self] error in
+                guard let weakSelf = self else {
+                    return
+                }
                 guard let apiError = error as? APIError else {
                     return
                 }
-                self.error.accept(apiError.message)
+                weakSelf.error.accept(apiError.message)
         }
         .disposed(by: self.disposeBag)
     }

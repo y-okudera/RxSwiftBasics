@@ -12,38 +12,47 @@ import RxSwift
 
 struct APIClient {
     
+    /// The range of acceptable status codes.
+    private static let acceptableStatusCodes = 200 ..< 300
+    
     /// API Request
-    static func request<T: APIRequest>(request: T) -> Single<Decodable> {
+    static func request<T: APIRequest>(request: T) -> Single<T.Response> {
         
         return Single.create { singleEvent in
             
             // 端末の通信状態をチェック
             if !isReachable() {
                 singleEvent(.error(APIError.connectionError))
+                Logger.error(APIError.connectionError.message)
                 return Disposables.create()
             }
             
+            // URLRequestを生成
             guard let urlRequest = request.makeURLRequest() else {
                 singleEvent(.error(APIError.invalidRequest))
+                Logger.error(APIError.invalidRequest.message)
                 return Disposables.create()
             }
+            Logger.info("URLRequest: \(urlRequest)")
             
-            print("urlRequest: \(urlRequest)")
             let request = Alamofire
                 .request(urlRequest)
-                .validate(statusCode: 200 ..< 300)
+                .validate(statusCode: self.acceptableStatusCodes)
                 .responseData { dataResponse in
                     
                     // エラーチェック
                     if let error = dataResponse.result.error {
-                        let apiError = errorToAPIError(error: error, statusCode: dataResponse.response?.statusCode)
+                        let statusCode = dataResponse.response?.statusCode
+                        let apiError = errorToAPIError(error: error, statusCode: statusCode)
                         singleEvent(.error(apiError))
+                        Logger.error(apiError.message)
                         return
                     }
                     
                     // レスポンスデータのnilチェック
                     guard let responseData = dataResponse.result.value else {
                         singleEvent(.error(APIError.invalidResponse))
+                        Logger.error(APIError.invalidResponse.message)
                         return
                     }
                     
@@ -76,18 +85,18 @@ extension APIClient {
     
     /// ErrorをAPIErrorに変換する
     private static func errorToAPIError(error: Error, statusCode: Int?) -> APIError {
-        print("HTTP status code:\(String(describing: statusCode))")
+        Logger.info("HTTP status code:\(String(describing: statusCode))")
         if let error = error as? URLError {
             if error.code == .timedOut {
-                print("timed out.")
+                Logger.error("timed out.")
                 return .connectionError
             }
             if error.code == .notConnectedToInternet {
-                print("Not connected to internet.")
+                Logger.error("Not connected to internet.")
                 return .connectionError
             }
         }
-        print("dataResponse.result.error:\(error)")
+        Logger.error("dataResponse.result.error:\(error)")
         return .others(error: error, statusCode: statusCode)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		643F75E3236203900061FD2E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F75E2236203900061FD2E /* Logger.swift */; };
 		6491C604235CC9F9008B80F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6491C603235CC9F9008B80F0 /* AppDelegate.swift */; };
 		6491C606235CC9F9008B80F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6491C605235CC9F9008B80F0 /* SceneDelegate.swift */; };
 		6491C60D235CC9FA008B80F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6491C60C235CC9FA008B80F0 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		643F75E2236203900061FD2E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6491C600235CC9F9008B80F0 /* Training2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Training2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6491C603235CC9F9008B80F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6491C605235CC9F9008B80F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		643F75E1236203840061FD2E /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				643F75E2236203900061FD2E /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		6491C5F7235CC9F9008B80F0 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 		6491C632235CCCF6008B80F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				643F75E1236203840061FD2E /* Logger */,
 				6491C641235CD0C4008B80F0 /* APIUtils */,
 				6491C633235CCD00008B80F0 /* API */,
 			);
@@ -305,6 +316,7 @@
 				6491C647235CDE7E008B80F0 /* WeatherListDataSource.swift in Sources */,
 				6491C635235CCD52008B80F0 /* WeatherForecastAPIResponse.swift in Sources */,
 				6491C645235CDD80008B80F0 /* WeatherListViewModel.swift in Sources */,
+				643F75E3236203900061FD2E /* Logger.swift in Sources */,
 				6491C604235CC9F9008B80F0 /* AppDelegate.swift in Sources */,
 				6491C606235CC9F9008B80F0 /* SceneDelegate.swift in Sources */,
 				6491C63F235CD0B7008B80F0 /* APIRequest.swift in Sources */,
