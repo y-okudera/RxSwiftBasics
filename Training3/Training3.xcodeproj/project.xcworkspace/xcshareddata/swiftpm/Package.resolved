@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "ce5be6fbc6f51414c49f56fc8e2b7c99253d9f8e",
+          "version": "4.9.0"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
+        "state": {
+          "branch": null,
+          "revision": "cd495310d8bb0ef73a726d77db19fe7f5530d080",
+          "version": "8.3.1"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa",
+        "state": {
+          "branch": null,
+          "revision": "9eec060b00e5dc7f00f1b06830eb78d62c44bb07",
+          "version": "3.20.0"
+        }
+      },
+      {
+        "package": "RealmCore",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "512dfaa4f59930e193c92e00ba1924bde69b19de",
+          "version": "5.23.5"
+        }
+      },
+      {
+        "package": "RxNuke",
+        "repositoryURL": "https://github.com/kean/RxNuke",
+        "state": {
+          "branch": null,
+          "revision": "b7b9e099ea028997a2b50a88671f59fa8d653ad8",
+          "version": "0.11.0"
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
+        "state": {
+          "branch": null,
+          "revision": "b3e888b4972d9bc76495dd74d30a8c7fad4b9395",
+          "version": "5.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
