@@ -6,9 +6,9 @@
 //  Copyright © 2019 Yuki Okudera. All rights reserved.
 //
 
-import UIKit
 import RxCocoa
 import RxSwift
+import UIKit
 
 final class GourmetListViewController: UIViewController {
     

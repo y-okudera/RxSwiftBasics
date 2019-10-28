@@ -7,20 +7,25 @@
 //
 
 import Nuke
-import RxSwift
 import RxNuke
+import RxSwift
 import UIKit
 
 final class ShopTableViewCell: UITableViewCell {
 
-    @IBOutlet private(set) weak var shopImageView: UIImageView!
-    @IBOutlet private(set) weak var shopNameLabel: UILabel!
-    private var disposeBag = DisposeBag()
+    @IBOutlet private weak var shopImageView: UIImageView!
+    @IBOutlet private weak var shopNameLabel: UILabel!
+    private let disposeBag = DisposeBag()
     
     var shop: Shop? {
         didSet {
             set(shop: shop)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        shopImageView.image = nil
     }
 }
 
